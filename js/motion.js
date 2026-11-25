@@ -185,6 +185,20 @@
     up('.contact .ways > *', '.contact .ways', { y: 50, stagger: 0.1 });
     var map = document.querySelector('.contact .map');
     gsap.fromTo(map, { clipPath: 'inset(0% 0% 100% 0% round 24px)' }, { clipPath: 'inset(0% 0% 0% 0% round 24px)', duration: 1.6, ease: 'io', scrollTrigger: { trigger: map, start: 'top 88%', once: true } });
+    /* footer slides over the contact block: contact lags, shrinks and dims */
+    var foot = document.getElementById('foot');
+    if (foot) {
+      gsap.fromTo('.contact > .wrap', { y: 0, scale: 1, opacity: 1 }, {
+        y: function () { return Math.min(foot.offsetHeight, window.innerHeight) * 0.45; },
+        scale: 0.94, opacity: 0.35, ease: 'none',
+        scrollTrigger: { trigger: foot, start: 'top bottom', end: 'top 30%', scrub: true, invalidateOnRefresh: true }
+      });
+      gsap.fromTo(foot, { borderTopLeftRadius: 120, borderTopRightRadius: 120 }, {
+        borderTopLeftRadius: 40, borderTopRightRadius: 40, ease: 'none',
+        scrollTrigger: { trigger: foot, start: 'top bottom', end: 'top 30%', scrub: true }
+      });
+    }
+
     var sign = document.querySelector('#sign svg');
     if (sign) {
       var vb = sign.viewBox.baseVal;
