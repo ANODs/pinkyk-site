@@ -212,14 +212,29 @@
         });
       });
 
+      /* "Смотреть" cursor: state is derived from what is under the pointer,
+         so it can never get stuck when tiles move, hide or the lightbox opens */
       var cur = document.getElementById('cur');
       var cx = gsap.quickTo(cur, 'x', { duration: 0.45, ease: 'power3.out' });
       var cy = gsap.quickTo(cur, 'y', { duration: 0.45, ease: 'power3.out' });
-      window.addEventListener('mousemove', function (e) { cx(e.clientX); cy(e.clientY); }, { passive: true });
-      document.querySelectorAll('.bento .c:not(.vid)').forEach(function (c) {
-        c.addEventListener('mouseenter', function () { gsap.to(cur, { scale: 1, duration: 0.5, ease: 'back.out(1.8)' }); });
-        c.addEventListener('mouseleave', function () { gsap.to(cur, { scale: 0, duration: 0.35, ease: 'power2.in' }); });
-      });
+      var px = -1, py = -1, shown = false;
+      function setCur(on) {
+        if (on === shown) return;
+        shown = on;
+        gsap.to(cur, on ? { scale: 1, duration: 0.5, ease: 'back.out(1.8)', overwrite: true }
+                        : { scale: 0, duration: 0.3, ease: 'power2.in', overwrite: true });
+      }
+      function check() {
+        if (px < 0 || document.getElementById('lb').classList.contains('open')) return setCur(false);
+        var el = document.elementFromPoint(px, py);
+        var tile = el && el.closest('.bento .c');
+        setCur(!!(tile && !tile.classList.contains('vid') && !tile.classList.contains('hide')));
+      }
+      window.addEventListener('mousemove', function (e) { px = e.clientX; py = e.clientY; cx(px); cy(py); check(); }, { passive: true });
+      window.addEventListener('scroll', check, { passive: true });
+      document.addEventListener('click', function () { setTimeout(check, 0); });
+      document.documentElement.addEventListener('mouseleave', function () { px = -1; setCur(false); });
+      window.addEventListener('blur', function () { setCur(false); });
     }
 
     /* ---------- start ---------- */
