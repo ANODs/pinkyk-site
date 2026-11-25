@@ -180,13 +180,12 @@
     up('.contact .ways > *', '.contact .ways', { y: 50, stagger: 0.1 });
     var map = document.querySelector('.contact .map');
     gsap.fromTo(map, { clipPath: 'inset(0% 0% 100% 0% round 24px)' }, { clipPath: 'inset(0% 0% 0% 0% round 24px)', duration: 1.6, ease: 'io', scrollTrigger: { trigger: map, start: 'top 88%', once: true } });
-    var sign = document.getElementById('sign');
+    var sign = document.querySelector('#sign svg');
     if (sign) {
-      SplitText.create(sign, {
-        type: 'chars', mask: 'chars', charsClass: 'ch', autoSplit: true,
-        onSplit: function (self) {
-          return gsap.fromTo(self.chars, { yPercent: 105 }, { yPercent: 0, ease: 'out', stagger: 0.04, scrollTrigger: { trigger: sign, start: 'top bottom', end: 'bottom bottom', scrub: 0.8 } });
-        }
+      var vb = sign.viewBox.baseVal;
+      gsap.fromTo(sign.querySelectorAll('.ch'), { y: vb.height }, {
+        y: 0, ease: 'none', stagger: 0.06,
+        scrollTrigger: { trigger: sign, start: 'top bottom', end: 'bottom bottom', scrub: 0.8 }
       });
     }
 
