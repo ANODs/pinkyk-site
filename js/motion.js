@@ -19,23 +19,8 @@
   var fine = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
   var PK = (window.PK = {});
 
-  /* smooth scroll */
-  if (window.Lenis) {
-    var lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 0.95 });
-    PK.lenis = lenis;
-    lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add(function (t) { lenis.raf(t * 1000); });
-    gsap.ticker.lagSmoothing(0);
-    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
-      a.addEventListener('click', function (e) {
-        var id = a.getAttribute('href');
-        var t = id === '#top' ? 0 : document.querySelector(id);
-        if (t === null) return;
-        e.preventDefault();
-        lenis.scrollTo(t, { offset: id === '#top' ? 0 : -24, duration: 1.6, easing: function (x) { return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; } });
-      });
-    });
-  }
+  /* native scroll; anchors glide with the browser's own smooth scroll */
+  document.documentElement.style.scrollBehavior = 'smooth';
 
   var fontsReady = document.fonts && document.fonts.ready
     ? Promise.race([document.fonts.ready, new Promise(function (r) { setTimeout(r, 1500); })])
@@ -246,9 +231,9 @@
       if (intro) intro.remove();
       heroTl.play(0);
     } else {
-      if (PK.lenis) PK.lenis.stop();
+      document.documentElement.style.overflow = 'hidden';
       var w = intro.querySelector('.intro-w span');
-      gsap.timeline({ onComplete: function () { intro.remove(); if (PK.lenis) PK.lenis.start(); } })
+      gsap.timeline({ onComplete: function () { intro.remove(); document.documentElement.style.overflow = ''; } })
         .fromTo(w, { yPercent: 110 }, { yPercent: 0, duration: 1.1 }, 0.1)
         .to(intro.querySelector('.intro-bar i'), { scaleX: 1, duration: 1.1, ease: 'io' }, 0.1)
         .to(w, { yPercent: -110, duration: 0.8, ease: 'io' }, 1.25)

@@ -941,8 +941,8 @@ ym(114680630,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webv
   // lightbox
   var lb=document.getElementById('lb'),big=lb.querySelector('img'),ct=lb.querySelector('.ct'),i=0;
   function list(){return cells.filter(function(c){return !c.classList.contains('hide')&&c.querySelector('img')})}
-  function show(n){var l=list();i=(n+l.length)%l.length;var im=l[i].querySelector('img');big.src=im.src;big.alt=im.alt;ct.textContent=im.alt+' · '+(i+1)+' / '+l.length;lb.classList.add('open');document.body.style.overflow='hidden';if(window.PK&&PK.lenis)PK.lenis.stop()}
-  function close(){lb.classList.remove('open');document.body.style.overflow='';if(window.PK&&PK.lenis)PK.lenis.start()}
+  function show(n){var l=list();i=(n+l.length)%l.length;var im=l[i].querySelector('img');big.src=im.src;big.alt=im.alt;ct.textContent=im.alt+' · '+(i+1)+' / '+l.length;lb.classList.add('open');document.body.style.overflow='hidden';}
+  function close(){lb.classList.remove('open');document.body.style.overflow='';}
   cells.forEach(function(c){if(c.querySelector('img'))c.addEventListener('click',function(){show(list().indexOf(c))})});
   lb.querySelector('.x').onclick=close;
   lb.querySelector('.pv').onclick=function(e){e.stopPropagation();show(i-1)};
@@ -962,7 +962,6 @@ ym(114680630,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webv
 <script src="js/ScrollTrigger.min.js" defer></script>
 <script src="js/SplitText.min.js" defer></script>
 <script src="js/CustomEase.min.js" defer></script>
-<script src="js/lenis.min.js" defer></script>
 <script src="js/motion.js" defer></script>
 <script src="js/track.js" defer></script>
 </body>
