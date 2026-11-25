@@ -446,6 +446,7 @@
  ]
 }
 </script>
+<script>document.documentElement.classList.add("js");setTimeout(function(){if(!document.documentElement.classList.contains("ready"))document.documentElement.classList.remove("js")},4000)</script>
 <style>
 :root{
   --cream:#f4eee8; --paper:#fbf7f3; --ink:#1a1415; --ink2:#241c1e; --mute:#8b7b7d; --line:rgba(26,20,21,.12);
@@ -454,7 +455,10 @@
   --pad:clamp(18px,4vw,56px); --r:28px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html{-webkit-text-size-adjust:100%}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-stopped{overflow:hidden}
 body{background:var(--cream);color:var(--ink);font:400 16px/1.55 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img,video{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
@@ -498,21 +502,17 @@ i.s,em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing
 .hero{position:relative;padding:clamp(120px,13vw,190px) 0 clamp(50px,7vw,100px);border-bottom:1px solid var(--line)}
 .hero .wrap{position:relative;z-index:1;width:100%}
 .hero h1 .ln{display:block;overflow:hidden;padding:.14em 0 .08em;margin-top:-.14em}
-.hero h1 .ln>span{display:block;transform:translateY(105%);animation:rise 1s cubic-bezier(.2,.8,.2,1) forwards}
-.hero h1 .ln:nth-child(2)>span{animation-delay:.09s}
-.hero h1 .ln:nth-child(3)>span{animation-delay:.18s}
-@keyframes rise{to{transform:none}}
+.hero h1 .ln>span{display:block}
 .hero h1 .ln.r{text-align:right}
 .hero-mid{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:end;margin-top:clamp(22px,3vw,44px)}
 .hero-mid p{max-width:440px;font-size:clamp(16px,1.35vw,19px);color:#4d4042}
 .hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
 .stack{position:relative;width:clamp(250px,30vw,430px);aspect-ratio:1/1.08;margin-right:3vw}
-.stack figure{position:absolute;overflow:hidden;box-shadow:0 30px 60px -28px rgba(26,20,21,.55);opacity:0;animation:pop .9s cubic-bezier(.2,.8,.2,1) forwards}
+.stack figure{position:absolute;overflow:hidden;box-shadow:0 30px 60px -28px rgba(26,20,21,.55)}
 .stack img{width:100%;height:100%;object-fit:cover}
-.stack .f1{inset:0 22% 14% 0;border-radius:999px 999px 22px 22px;animation-delay:.35s;--rot:-3deg}
-.stack .f2{width:46%;aspect-ratio:1;right:0;bottom:0;border-radius:22px;border:5px solid var(--cream);animation-delay:.5s;--rot:5deg}
-.stack .f3{width:30%;aspect-ratio:1;right:4%;top:6%;border-radius:50%;border:5px solid var(--cream);animation-delay:.62s;--rot:0deg}
-@keyframes pop{from{opacity:0;transform:translateY(40px) scale(.94) rotate(0)}to{opacity:1;transform:rotate(var(--rot))}}
+.stack .f1{inset:0 22% 14% 0;border-radius:999px 999px 22px 22px;rotate:-3deg}
+.stack .f2{width:46%;aspect-ratio:1;right:0;bottom:0;border-radius:22px;border:5px solid var(--cream);rotate:5deg}
+.stack .f3{width:30%;aspect-ratio:1;right:4%;top:6%;border-radius:50%;border:5px solid var(--cream)}
 .h1sub{display:block;font-size:clamp(13px,1.2vw,16px);letter-spacing:.02em;line-height:1.4;font-weight:500;text-transform:none;color:#5c4e50;margin-bottom:clamp(14px,1.8vw,26px)}
 /* manifesto */
 .mani{padding:clamp(80px,11vw,170px) 0}
@@ -520,6 +520,7 @@ i.s,em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing
 .mani .big em{color:var(--hot);font-size:1.1em}
 .mani .big .ph{display:inline-block;width:1.9em;height:1em;border-radius:999px;background-size:cover;background-position:center;vertical-align:-.12em;margin:0 .1em}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);margin-top:clamp(48px,6vw,90px);border-top:1px solid var(--line)}
+.stats b{font-variant-numeric:tabular-nums}
 .stats div{padding:24px 20px 0 0}
 .stats div+div{border-left:1px solid var(--line);padding-left:24px}
 .stats b{display:block;font-size:clamp(40px,6vw,88px);font-weight:500;letter-spacing:-.06em;line-height:1}
@@ -531,8 +532,8 @@ i.s,em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing
 .why .head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:clamp(36px,5vw,70px)}
 .why .h-l em{color:var(--rose)}
 .why .kicker{color:#cbb9bb}
-.acc{border-top:1px solid rgba(255,255,255,.14)}
-.acc .it{display:grid;grid-template-columns:90px 1fr 1.1fr;gap:24px;align-items:baseline;padding:clamp(20px,2.6vw,34px) 0;border-bottom:1px solid rgba(255,255,255,.14);transition:padding .4s,color .3s;position:relative}
+.acc{--lc:rgba(255,255,255,.14)}
+.acc .it{display:grid;grid-template-columns:90px 1fr 1.1fr;gap:24px;align-items:baseline;padding:clamp(20px,2.6vw,34px) 0;transition:padding .4s,color .3s;position:relative}
 .acc .it::before{content:"";position:absolute;inset:0 calc(var(--pad)*-.5);background:var(--rose);border-radius:20px;transform:scaleY(0);transform-origin:bottom;transition:transform .45s cubic-bezier(.2,.8,.2,1);z-index:0}
 .acc .it>*{position:relative;z-index:1}
 .acc .it .n{font-family:var(--serif);font-style:italic;font-size:22px;color:var(--rose);transition:.3s}
@@ -573,8 +574,8 @@ i.s,em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing
 .sale b{font-size:40px;letter-spacing:-.06em;font-weight:500;line-height:1;color:var(--hot)}
 .sale span{font-size:14px;line-height:1.35}
 .grp+.grp{margin-top:44px}
-.grp h3{font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:var(--mute);padding-bottom:12px;border-bottom:1px solid var(--ink)}
-.pr{display:flex;align-items:baseline;gap:14px;padding:18px 0;border-bottom:1px solid var(--line);transition:padding .3s}
+.grp h3{font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:var(--mute);padding-bottom:12px;--lc:var(--ink)}
+.pr{display:flex;align-items:baseline;gap:14px;padding:18px 0;--lc:var(--line);transition:padding .3s}
 .pr:hover{padding-left:10px}
 .pr .nm{font-size:clamp(17px,1.6vw,22px);letter-spacing:-.02em;font-weight:500}
 .pr .tm{font-size:13px;color:var(--mute);white-space:nowrap}
@@ -592,8 +593,8 @@ i.s,em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing
 /* faq */
 .faq{padding:0 0 clamp(70px,9vw,140px)}
 .faq .grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(30px,6vw,100px);align-items:start}
-.faq details{border-bottom:1px solid var(--line)}
-.faq details:first-of-type{border-top:1px solid var(--ink)}
+.faq details{--lc:var(--line)}
+.faq .qs{border-top:1px solid var(--ink)}
 .faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 0}
 .faq summary::-webkit-details-marker{display:none}
 .faq summary h3{font-size:clamp(18px,1.9vw,26px);font-weight:500;letter-spacing:-.03em;line-height:1.2}
@@ -641,10 +642,23 @@ i.s,em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing
 .lb .ct{position:absolute;bottom:18px;left:0;right:0;text-align:center;color:#cbb9bb;font-size:14px}
 
 /* reveal */
-.rv{opacity:0;transform:translateY(34px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1)}
-.rv.in{opacity:1;transform:none}
+/* motion */
+html.js main,html.js .nav{visibility:hidden}
+.sl-mask{padding:.12em 0 .16em;margin:-.12em 0 -.16em}
+.ln-draw{--w:100%;background-image:linear-gradient(var(--lc),var(--lc));background-repeat:no-repeat;background-position:left bottom;background-size:var(--w) 1px}
+.nav{transition:transform .7s cubic-bezier(.16,1,.3,1),background .3s}
+.nav.hid{transform:translate(-50%,-160%)}
+.intro{position:fixed;inset:0;z-index:100;background:var(--ink);color:var(--cream);display:grid;place-items:center;pointer-events:none}
+.intro-w{overflow:hidden;font-size:clamp(40px,9vw,120px);font-weight:500;letter-spacing:-.06em;line-height:1.05;padding:.08em .02em .14em}
+.intro-w span{display:block}
+.intro-w em{color:var(--rose);font-size:1.16em}
+.intro-bar{position:absolute;left:var(--pad);right:var(--pad);bottom:clamp(28px,5vw,56px);height:1px;background:rgba(255,255,255,.12)}
+.intro-bar i{position:absolute;inset:0;background:var(--rose);transform-origin:left;transform:scaleX(0)}
+.cur{position:fixed;left:0;top:0;z-index:70;width:92px;height:92px;margin:-46px 0 0 -46px;border-radius:50%;background:var(--cream);color:var(--ink);display:grid;place-items:center;font-size:13px;font-weight:500;pointer-events:none;scale:0;mix-blend-mode:normal}
+@media (hover:none),(pointer:coarse){.cur{display:none}}
 
 @media (max-width:900px){
+  .nav.hid{transform:translateY(-160%)}
   .nav{left:12px;right:12px;transform:none;justify-content:space-between;padding-left:18px}
   .nav a.l{display:none}
   .hero{padding-top:104px}
@@ -677,7 +691,7 @@ i.s,em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
-  .rv,.stack figure{opacity:1;transform:none}
+  html.js main,html.js .nav{visibility:visible}
   .hero h1 .ln>span{transform:none}
 }
 </style>
@@ -693,6 +707,9 @@ i.s,em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing
   <a class="l" href="#contact">Контакты</a>
   <a class="cta" href="https://www.avito.ru/pavlovskaya_sloboda/predlozheniya_uslug/manikyur_pavlovskaya_sloboda_8549696573" target="_blank" rel="noopener">Записаться</a>
 </nav>
+
+<div class="intro" id="intro" aria-hidden="true"><div class="intro-w"><span>Pinky<em>K</em>.ink</span></div><div class="intro-bar"><i></i></div></div>
+<div class="cur" id="cur" aria-hidden="true">Смотреть</div>
 
 <main id="top">
 <section class="hero">
@@ -722,13 +739,13 @@ i.s,em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing
 
 <section class="mani" id="about">
   <div class="wrap">
-    <span class="kicker rv">О мастере</span>
-    <p class="big rv">Меня зовут <em>Катя</em>. <span class="ph" style="background-image:url(img/03.jpg)"></span> Я мастер маникюра с медицинским образованием и работаю только с укреплением: гель защищает натуральные ногти <span class="ph" style="background-image:url(img/07.jpg)"></span> и помогает им держать форму <em>до следующей коррекции.</em></p>
+    <span class="kicker">О мастере</span>
+    <p class="big">Меня зовут <em>Катя</em>. <span class="ph" style="background-image:url(img/03.jpg)"></span> Я мастер маникюра с медицинским образованием и работаю только с укреплением: гель защищает натуральные ногти <span class="ph" style="background-image:url(img/07.jpg)"></span> и помогает им держать форму <em>до следующей коррекции.</em></p>
     <div class="stats">
-      <div class="rv"><b>5<em>+</em></b><small>лет в профессии</small></div>
-      <div class="rv"><b>1,5<em>ч</em></b><small>в среднем на визит — без спешки и потока</small></div>
-      <div class="rv"><b>5,0</b><small>рейтинг по отзывам на Авито</small></div>
-      <div class="rv"><b>3</b><small>этапа обработки инструментов</small></div>
+      <div><b>5<em>+</em></b><small>лет в профессии</small></div>
+      <div><b>1,5<em>ч</em></b><small>в среднем на визит — без спешки и потока</small></div>
+      <div><b>5,0</b><small>рейтинг по отзывам на Авито</small></div>
+      <div><b>3</b><small>этапа обработки инструментов</small></div>
     </div>
   </div>
 </section>
@@ -736,16 +753,16 @@ i.s,em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing
 <section class="why">
   <div class="wrap">
     <div class="head">
-      <h2 class="h-l rv">Почему <em>выбирают</em><br>меня</h2>
-      <span class="kicker rv">Шесть причин</span>
+      <h2 class="h-l" data-split>Почему <em>выбирают</em><br>меня</h2>
+      <span class="kicker">Шесть причин</span>
     </div>
     <div class="acc">
-      <div class="it rv"><span class="n">01</span><h3>Медицинское образование</h3><p>Знаю, как устроены ноготь и кожа, поэтому работаю бережно и не травмирую ваши ногти.</p></div>
-      <div class="it rv"><span class="n">02</span><h3>Стерильность</h3><p>Инструменты проходят полный цикл: дезинфекция, ультразвуковая очистка и стерилизация.</p></div>
-      <div class="it rv"><span class="n">03</span><h3>Тонкое покрытие</h3><p>Правильная архитектура без лишней толщины — ногти выглядят натурально и изящно.</p></div>
-      <div class="it rv"><span class="n">04</span><h3>Чистая кутикула</h3><p>Тщательная обработка с вниманием к каждой детали.</p></div>
-      <div class="it rv"><span class="n">05</span><h3>Индивидуальный подход</h3><p>Подбираю материалы и технику под особенности именно ваших ногтей.</p></div>
-      <div class="it rv"><span class="n">06</span><h3>Без спешки</h3><p>Не работаю на поток. На каждую клиентку — столько времени, сколько нужно для идеального результата.</p></div>
+      <div class="it ln-draw"><span class="n">01</span><h3>Медицинское образование</h3><p>Знаю, как устроены ноготь и кожа, поэтому работаю бережно и не травмирую ваши ногти.</p></div>
+      <div class="it ln-draw"><span class="n">02</span><h3>Стерильность</h3><p>Инструменты проходят полный цикл: дезинфекция, ультразвуковая очистка и стерилизация.</p></div>
+      <div class="it ln-draw"><span class="n">03</span><h3>Тонкое покрытие</h3><p>Правильная архитектура без лишней толщины — ногти выглядят натурально и изящно.</p></div>
+      <div class="it ln-draw"><span class="n">04</span><h3>Чистая кутикула</h3><p>Тщательная обработка с вниманием к каждой детали.</p></div>
+      <div class="it ln-draw"><span class="n">05</span><h3>Индивидуальный подход</h3><p>Подбираю материалы и технику под особенности именно ваших ногтей.</p></div>
+      <div class="it ln-draw"><span class="n">06</span><h3>Без спешки</h3><p>Не работаю на поток. На каждую клиентку — столько времени, сколько нужно для идеального результата.</p></div>
     </div>
   </div>
 </section>
@@ -753,8 +770,8 @@ i.s,em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing
 <section class="works" id="works">
   <div class="wrap">
     <div class="head">
-      <h2 class="h-l rv">Мои <em>работы</em></h2>
-      <div class="filters rv" id="filters">
+      <h2 class="h-l" data-split>Мои <em>работы</em></h2>
+      <div class="filters" id="filters">
         <button class="on" data-f="all">Все</button>
         <button data-f="french">Френч</button>
         <button data-f="ext">Наращивание</button>
@@ -776,7 +793,7 @@ i.s,em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing
       <button class="c" data-t="design"><img src="img/11.jpg" alt="Розовый с перламутром" width="900" height="900" loading="lazy" decoding="async"><span class="cap">Перламутр</span></button>
       <button class="c" data-t="design"><img src="img/12.jpg" alt="Розовый дизайн" width="900" height="900" loading="lazy" decoding="async"><span class="cap">Розовый</span></button>
     </div>
-    <div class="foot rv">
+    <div class="foot">
       <p>Чистая эстетика, натуральные оттенки, изящные формы. Свежие работы каждую неделю — в Instagram*.</p>
       <a class="btn light" href="https://www.instagram.com/nails.pavsloboda/" target="_blank" rel="noopener">Instagram* <span class="a"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
     </div>
@@ -787,35 +804,35 @@ i.s,em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing
   <div class="wrap">
     <div class="grid">
       <div class="side">
-        <span class="kicker rv">Прайс</span>
-        <h2 class="h-l rv" style="margin-top:18px">Услуги<br>и <em style="color:var(--hot)">цены</em></h2>
-        <p class="rv">Точную стоимость дизайна и наращивания подскажу при записи — зависит от длины и сложности.</p>
-        <div class="sale rv"><b>−10%</b><span>новым клиентам<br>на первый визит</span></div>
-        <a class="btn rv" href="https://www.avito.ru/pavlovskaya_sloboda/predlozheniya_uslug/manikyur_pavlovskaya_sloboda_8549696573" target="_blank" rel="noopener">Записаться <span class="a"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+        <span class="kicker">Прайс</span>
+        <h2 class="h-l" data-split style="margin-top:18px">Услуги<br>и <em style="color:var(--hot)">цены</em></h2>
+        <p>Точную стоимость дизайна и наращивания подскажу при записи — зависит от длины и сложности.</p>
+        <div class="sale"><b>−10%</b><span>новым клиентам<br>на первый визит</span></div>
+        <a class="btn" href="https://www.avito.ru/pavlovskaya_sloboda/predlozheniya_uslug/manikyur_pavlovskaya_sloboda_8549696573" target="_blank" rel="noopener">Записаться <span class="a"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
       </div>
       <div>
-        <div class="grp rv">
-          <h3>Маникюр</h3>
-          <div class="pr"><span class="nm">Укрепление ногтей гелем</span><span class="tm">1 ч 30 мин</span><span class="dots"></span><span class="pc">2 800 ₽</span></div>
-          <div class="pr"><span class="nm">Маникюр с гель-лаком</span><span class="tm">1 ч 30 мин</span><span class="dots"></span><span class="pc">2 500 ₽</span></div>
-          <div class="pr"><span class="nm">Маникюр с покрытием лаком</span><span class="tm">1 ч</span><span class="dots"></span><span class="pc">1 500 ₽</span></div>
-          <div class="pr"><span class="nm">Аппаратный маникюр</span><span class="tm">45 мин</span><span class="dots"></span><span class="pc">1 300 ₽</span></div>
-          <div class="pr"><span class="nm">Маникюр без покрытия</span><span class="tm">45 мин</span><span class="dots"></span><span class="pc">1 300 ₽</span></div>
+        <div class="grp">
+          <h3 class="ln-draw">Маникюр</h3>
+          <div class="pr ln-draw"><span class="nm">Укрепление ногтей гелем</span><span class="tm">1 ч 30 мин</span><span class="dots"></span><span class="pc">2 800 ₽</span></div>
+          <div class="pr ln-draw"><span class="nm">Маникюр с гель-лаком</span><span class="tm">1 ч 30 мин</span><span class="dots"></span><span class="pc">2 500 ₽</span></div>
+          <div class="pr ln-draw"><span class="nm">Маникюр с покрытием лаком</span><span class="tm">1 ч</span><span class="dots"></span><span class="pc">1 500 ₽</span></div>
+          <div class="pr ln-draw"><span class="nm">Аппаратный маникюр</span><span class="tm">45 мин</span><span class="dots"></span><span class="pc">1 300 ₽</span></div>
+          <div class="pr ln-draw"><span class="nm">Маникюр без покрытия</span><span class="tm">45 мин</span><span class="dots"></span><span class="pc">1 300 ₽</span></div>
         </div>
-        <div class="grp rv">
-          <h3>Наращивание</h3>
-          <div class="pr"><span class="nm">Наращивание ногтей</span><span class="tm">2 ч 30 мин</span><span class="dots"></span><span class="pc">3 500–7 000 ₽</span></div>
-          <div class="pr"><span class="nm">Коррекция наращённых</span><span class="tm">1 ч 45 мин</span><span class="dots"></span><span class="pc">от 3 000 ₽</span></div>
-          <div class="pr"><span class="nm">Снятие наращённых</span><span class="tm">15 мин</span><span class="dots"></span><span class="pc">600 ₽</span></div>
+        <div class="grp">
+          <h3 class="ln-draw">Наращивание</h3>
+          <div class="pr ln-draw"><span class="nm">Наращивание ногтей</span><span class="tm">2 ч 30 мин</span><span class="dots"></span><span class="pc">3 500–7 000 ₽</span></div>
+          <div class="pr ln-draw"><span class="nm">Коррекция наращённых</span><span class="tm">1 ч 45 мин</span><span class="dots"></span><span class="pc">от 3 000 ₽</span></div>
+          <div class="pr ln-draw"><span class="nm">Снятие наращённых</span><span class="tm">15 мин</span><span class="dots"></span><span class="pc">600 ₽</span></div>
         </div>
-        <div class="grp rv">
+        <div class="grp">
           <h3>Дизайн и уход</h3>
-          <div class="pr"><span class="nm">Френч</span><span class="tm">15 мин</span><span class="dots"></span><span class="pc">500 ₽</span></div>
-          <div class="pr"><span class="nm">Градиент (омбре)</span><span class="tm">15 мин</span><span class="dots"></span><span class="pc">500 ₽</span></div>
-          <div class="pr"><span class="nm">Дизайн ногтей</span><span class="tm">15 мин</span><span class="dots"></span><span class="pc">от 200 ₽</span></div>
-          <div class="pr"><span class="nm">Стразы</span><span class="tm">15 мин</span><span class="dots"></span><span class="pc">от 200 ₽</span></div>
-          <div class="pr"><span class="nm">Снятие гель-лака</span><span class="tm">15 мин</span><span class="dots"></span><span class="pc">500 ₽</span></div>
-          <div class="pr"><span class="nm">Парафинотерапия</span><span class="tm">15 мин</span><span class="dots"></span><span class="pc">300 ₽</span></div>
+          <div class="pr ln-draw"><span class="nm">Френч</span><span class="tm">15 мин</span><span class="dots"></span><span class="pc">500 ₽</span></div>
+          <div class="pr ln-draw"><span class="nm">Градиент (омбре)</span><span class="tm">15 мин</span><span class="dots"></span><span class="pc">500 ₽</span></div>
+          <div class="pr ln-draw"><span class="nm">Дизайн ногтей</span><span class="tm">15 мин</span><span class="dots"></span><span class="pc">от 200 ₽</span></div>
+          <div class="pr ln-draw"><span class="nm">Стразы</span><span class="tm">15 мин</span><span class="dots"></span><span class="pc">от 200 ₽</span></div>
+          <div class="pr ln-draw"><span class="nm">Снятие гель-лака</span><span class="tm">15 мин</span><span class="dots"></span><span class="pc">500 ₽</span></div>
+          <div class="pr ln-draw"><span class="nm">Парафинотерапия</span><span class="tm">15 мин</span><span class="dots"></span><span class="pc">300 ₽</span></div>
         </div>
       </div>
     </div>
@@ -824,7 +841,7 @@ i.s,em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing
 
 <section class="rev">
   <div class="wrap">
-    <div class="card rv">
+    <div class="card">
       <span class="q" aria-hidden="true">“</span>
       <div>
         <blockquote>Работа выполнена отлично, очень приятный мастер, делает всё аккуратно. По времени очень быстро управились — рекомендую.</blockquote>
@@ -838,17 +855,17 @@ i.s,em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing
   <div class="wrap">
     <div class="grid">
       <div>
-        <span class="kicker rv">Вопросы</span>
-        <h2 class="h-l rv" style="margin-top:18px">Частые<br><em style="color:var(--hot)">вопросы</em></h2>
+        <span class="kicker">Вопросы</span>
+        <h2 class="h-l" data-split style="margin-top:18px">Частые<br><em style="color:var(--hot)">вопросы</em></h2>
       </div>
-      <div class="rv">
-        <details open><summary><h3>Где вы принимаете?</h3></summary><p>В кабинете по адресу: Московская область, г.о. Истра, с. Павловская Слобода, ул. Луначарского, 11. Приём только по предварительной записи.</p></details>
-        <details><summary><h3>Сколько стоит маникюр в Павловской Слободе?</h3></summary><p>Маникюр с покрытием гель-лаком — 2 500 ₽, укрепление ногтей гелем — 2 800 ₽, маникюр без покрытия — 1 300 ₽. Наращивание ногтей — от 3 500 до 7 000 ₽ в зависимости от длины и сложности. Новым клиентам скидка 10% на первый визит.</p></details>
-        <details><summary><h3>Сколько времени занимает процедура?</h3></summary><p>Маникюр с укреплением и покрытием занимает в среднем 1,5 часа, наращивание ногтей — около 2,5 часов, коррекция наращённых ногтей — около 1 часа 45 минут.</p></details>
-        <details><summary><h3>Как обрабатываются инструменты?</h3></summary><p>Инструменты после каждой клиентки проходят полный цикл обработки в три этапа: дезинфекция, ультразвуковая очистка и стерилизация.</p></details>
-        <details><summary><h3>Почему маникюр только с укреплением?</h3></summary><p>Гель создаёт прочную основу, которая защищает натуральные ногти от «скручивания» и помогает им сохранять форму. Покрытие аккуратно держится до следующей коррекции, и маникюр остаётся красивым всё время носки.</p></details>
-        <details><summary><h3>Вы делаете наращивание ногтей и дизайн?</h3></summary><p>Да. Наращивание любой формы (миндаль, квадрат и другие), коррекция, френч, омбре, хром, стразы и другой дизайн. Стоимость дизайна — от 200 ₽.</p></details>
-        <details><summary><h3>Как записаться?</h3></summary><p>Напишите в сообщения на Авито — мастер пришлёт свободные окошки и поможет подобрать удобное время.</p></details>
+      <div class="qs">
+        <details class="ln-draw" open><summary><h3>Где вы принимаете?</h3></summary><p>В кабинете по адресу: Московская область, г.о. Истра, с. Павловская Слобода, ул. Луначарского, 11. Приём только по предварительной записи.</p></details>
+        <details class="ln-draw"><summary><h3>Сколько стоит маникюр в Павловской Слободе?</h3></summary><p>Маникюр с покрытием гель-лаком — 2 500 ₽, укрепление ногтей гелем — 2 800 ₽, маникюр без покрытия — 1 300 ₽. Наращивание ногтей — от 3 500 до 7 000 ₽ в зависимости от длины и сложности. Новым клиентам скидка 10% на первый визит.</p></details>
+        <details class="ln-draw"><summary><h3>Сколько времени занимает процедура?</h3></summary><p>Маникюр с укреплением и покрытием занимает в среднем 1,5 часа, наращивание ногтей — около 2,5 часов, коррекция наращённых ногтей — около 1 часа 45 минут.</p></details>
+        <details class="ln-draw"><summary><h3>Как обрабатываются инструменты?</h3></summary><p>Инструменты после каждой клиентки проходят полный цикл обработки в три этапа: дезинфекция, ультразвуковая очистка и стерилизация.</p></details>
+        <details class="ln-draw"><summary><h3>Почему маникюр только с укреплением?</h3></summary><p>Гель создаёт прочную основу, которая защищает натуральные ногти от «скручивания» и помогает им сохранять форму. Покрытие аккуратно держится до следующей коррекции, и маникюр остаётся красивым всё время носки.</p></details>
+        <details class="ln-draw"><summary><h3>Вы делаете наращивание ногтей и дизайн?</h3></summary><p>Да. Наращивание любой формы (миндаль, квадрат и другие), коррекция, френч, омбре, хром, стразы и другой дизайн. Стоимость дизайна — от 200 ₽.</p></details>
+        <details class="ln-draw"><summary><h3>Как записаться?</h3></summary><p>Напишите в сообщения на Авито — мастер пришлёт свободные окошки и поможет подобрать удобное время.</p></details>
       </div>
     </div>
   </div>
@@ -856,28 +873,28 @@ i.s,em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing
 
 <section class="contact" id="contact">
   <div class="wrap">
-    <span class="kicker rv">Запись</span>
-    <h2 class="h-xl rv" style="margin-top:20px">Найдём <em>ваше</em><br>окошко</h2>
+    <span class="kicker">Запись</span>
+    <h2 class="h-xl" data-split style="margin-top:20px">Найдём <em>ваше</em><br>окошко</h2>
     <div class="grid">
       <div class="ways">
-        <a class="way rv" href="https://www.avito.ru/pavlovskaya_sloboda/predlozheniya_uslug/manikyur_pavlovskaya_sloboda_8549696573" target="_blank" rel="noopener">
+        <a class="way" href="https://www.avito.ru/pavlovskaya_sloboda/predlozheniya_uslug/manikyur_pavlovskaya_sloboda_8549696573" target="_blank" rel="noopener">
           <span class="ic"><svg width="30" height="30" viewBox="0 0 26 26"><circle cx="8" cy="8" r="6" fill="#00AAFF"/><circle cx="19" cy="9" r="4" fill="#A169F7"/><circle cx="9" cy="19" r="4" fill="#FF6163"/><circle cx="19" cy="19" r="5" fill="#97CF26"/></svg></span>
           <span><b>Написать на Авито</b><small>Запись, свободные окошки, отзывы</small></span>
           <span class="go"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </a>
-        <a class="way rv" href="https://www.instagram.com/nails.pavsloboda/" target="_blank" rel="noopener">
+        <a class="way" href="https://www.instagram.com/nails.pavsloboda/" target="_blank" rel="noopener">
           <span class="ic" style="background:linear-gradient(45deg,#f9b14b,#e1306c,#8a3ab9)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#fff"/></svg></span>
           <span><b>@nails.pavsloboda<sup>*</sup></b><small>Instagram* — портфолио</small></span>
           <span class="go"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </a>
-        <div class="place rv"><b>Павловская Слобода, ул. Луначарского, 11</b>Московская область, г.о. Истра · приём в кабинете по записи. Удобно добираться из Дедовска, Нахабино, Рождествено и с Новорижского шоссе.</div>
+        <div class="place"><b>Павловская Слобода, ул. Луначарского, 11</b>Московская область, г.о. Истра · приём в кабинете по записи. Удобно добираться из Дедовска, Нахабино, Рождествено и с Новорижского шоссе.</div>
       </div>
-      <div class="map rv">
+      <div class="map">
         <iframe src="https://yandex.ru/map-widget/v1/?text=%D0%9F%D0%B0%D0%B2%D0%BB%D0%BE%D0%B2%D1%81%D0%BA%D0%B0%D1%8F%20%D0%A1%D0%BB%D0%BE%D0%B1%D0%BE%D0%B4%D0%B0%2C%20%D1%83%D0%BB.%20%D0%9B%D1%83%D0%BD%D0%B0%D1%87%D0%B0%D1%80%D1%81%D0%BA%D0%BE%D0%B3%D0%BE%2C%2011&z=15" title="Карта: Павловская Слобода, ул. Луначарского, 11" loading="lazy" allowfullscreen></iframe>
       </div>
     </div>
   </div>
-  <div class="sign" aria-hidden="true">Pinky<em>K</em>.ink</div>
+  <div class="sign" aria-hidden="true" id="sign">Pinky<em>K</em>.ink</div>
   <div class="legal"><div class="wrap">
     <span>* Instagram принадлежит компании Meta Platforms Inc., деятельность которой признана экстремистской и запрещена на территории Российской Федерации.</span>
     <span>© 2026 PinkyK.ink · частный мастер маникюра</span>
@@ -897,13 +914,6 @@ i.s,em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing
 
 <script>
 (function(){
-  // reveal
-  var rv=[].slice.call(document.querySelectorAll('.rv'));
-  if('IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});
-    rv.forEach(function(el,i){el.style.transitionDelay=(i%4)*70+'ms';io.observe(el)});
-  } else rv.forEach(function(el){el.classList.add('in')});
-
   // filters
   var cells=[].slice.call(document.querySelectorAll('#bento .c'));
   document.getElementById('filters').addEventListener('click',function(e){
@@ -911,13 +921,14 @@ i.s,em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing
     [].forEach.call(this.children,function(x){x.classList.toggle('on',x===b)});
     var f=b.dataset.f;
     cells.forEach(function(c){c.classList.toggle('hide',f!=='all'&&c.dataset.t!==f)});
+    if(window.PK&&PK.filtered)PK.filtered(cells.filter(function(c){return !c.classList.contains('hide')}));
   });
 
   // lightbox
   var lb=document.getElementById('lb'),big=lb.querySelector('img'),ct=lb.querySelector('.ct'),i=0;
   function list(){return cells.filter(function(c){return !c.classList.contains('hide')&&c.querySelector('img')})}
-  function show(n){var l=list();i=(n+l.length)%l.length;var im=l[i].querySelector('img');big.src=im.src;big.alt=im.alt;ct.textContent=im.alt+' · '+(i+1)+' / '+l.length;lb.classList.add('open');document.body.style.overflow='hidden'}
-  function close(){lb.classList.remove('open');document.body.style.overflow=''}
+  function show(n){var l=list();i=(n+l.length)%l.length;var im=l[i].querySelector('img');big.src=im.src;big.alt=im.alt;ct.textContent=im.alt+' · '+(i+1)+' / '+l.length;lb.classList.add('open');document.body.style.overflow='hidden';if(window.PK&&PK.lenis)PK.lenis.stop()}
+  function close(){lb.classList.remove('open');document.body.style.overflow='';if(window.PK&&PK.lenis)PK.lenis.start()}
   cells.forEach(function(c){if(c.querySelector('img'))c.addEventListener('click',function(){show(list().indexOf(c))})});
   lb.querySelector('.x').onclick=close;
   lb.querySelector('.pv').onclick=function(e){e.stopPropagation();show(i-1)};
@@ -933,5 +944,11 @@ i.s,em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing
   window.addEventListener('scroll',onS,{passive:true});onS();
 })();
 </script>
+<script src="js/gsap.min.js" defer></script>
+<script src="js/ScrollTrigger.min.js" defer></script>
+<script src="js/SplitText.min.js" defer></script>
+<script src="js/CustomEase.min.js" defer></script>
+<script src="js/lenis.min.js" defer></script>
+<script src="js/motion.js" defer></script>
 </body>
 </html>
