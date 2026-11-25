@@ -1,2 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://pinkyk.ink/</loc></url></urlset>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+<url><loc>https://pinkyk.ink/</loc><lastmod>2026-11-25</lastmod><changefreq>weekly</changefreq><priority>1.0</priority>
+<image:image><image:loc>https://pinkyk.ink/img/01.jpg</image:loc></image:image>
+<image:image><image:loc>https://pinkyk.ink/img/02.jpg</image:loc></image:image>
+<image:image><image:loc>https://pinkyk.ink/img/03.jpg</image:loc></image:image>
+<image:image><image:loc>https://pinkyk.ink/img/04.jpg</image:loc></image:image>
+<image:image><image:loc>https://pinkyk.ink/img/05.jpg</image:loc></image:image>
+<image:image><image:loc>https://pinkyk.ink/img/06.jpg</image:loc></image:image>
+<image:image><image:loc>https://pinkyk.ink/img/07.jpg</image:loc></image:image>
+<image:image><image:loc>https://pinkyk.ink/img/08.jpg</image:loc></image:image>
+<image:image><image:loc>https://pinkyk.ink/img/09.jpg</image:loc></image:image>
+<image:image><image:loc>https://pinkyk.ink/img/10.jpg</image:loc></image:image>
+<image:image><image:loc>https://pinkyk.ink/img/11.jpg</image:loc></image:image>
+<image:image><image:loc>https://pinkyk.ink/img/12.jpg</image:loc></image:image>
+</url></urlset>
