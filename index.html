@@ -601,6 +601,15 @@ i.s,em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing
 .faq details[open] summary::after{transform:rotate(45deg);background:var(--ink);color:#fff}
 .faq details p{padding:0 60px 24px 0;color:#5c4e50;max-width:640px}
 @media (max-width:900px){.faq .grid{grid-template-columns:1fr}.faq details p{padding-right:0}}
+/* reads */
+.reads{padding:0 0 clamp(70px,9vw,140px)}
+.rhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.rhead .all{font-size:15px;font-weight:500;text-decoration:none;color:var(--hot)}
+.rlist{border-top:1px solid var(--ink)}
+.rlist a{--lc:var(--line);display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 0;text-decoration:none;font-size:clamp(18px,2vw,26px);font-weight:500;letter-spacing:-.03em;line-height:1.2;transition:padding .35s cubic-bezier(.16,1,.3,1),color .25s}
+.rlist a i{font-style:normal;color:var(--hot);transition:transform .35s cubic-bezier(.16,1,.3,1)}
+.rlist a:hover{padding-left:12px;color:var(--hot)}
+.rlist a:hover i{transform:translateX(6px)}
 /* contact */
 .contact{background:var(--ink);color:var(--cream);border-radius:var(--r) var(--r) 0 0;padding:clamp(70px,9vw,130px) 0 0;overflow:hidden}
 .contact .h-xl em{color:var(--rose)}
@@ -717,6 +726,7 @@ ym(114680630,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webv
   <a class="l" href="#works">Работы</a>
   <a class="l" href="#prices">Цены</a>
   <a class="l" href="#faq">Вопросы</a>
+  <a class="l" href="/stati/">Статьи</a>
   <a class="l" href="#contact">Контакты</a>
   <a class="cta" href="https://www.avito.ru/pavlovskaya_sloboda/predlozheniya_uslug/manikyur_pavlovskaya_sloboda_8549696573" data-goal="avito_click" data-place="nav" target="_blank" rel="noopener">Записаться</a>
 </nav>
@@ -880,6 +890,18 @@ ym(114680630,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webv
         <details class="ln-draw"><summary><h3>Вы делаете наращивание ногтей и дизайн?</h3></summary><p>Да. Наращивание любой формы (миндаль, квадрат и другие), коррекция, френч, омбре, хром, стразы и другой дизайн. Стоимость дизайна — от 200 ₽.</p></details>
         <details class="ln-draw"><summary><h3>Как записаться?</h3></summary><p>Напишите в сообщения на Авито — мастер пришлёт свободные окошки и поможет подобрать удобное время.</p></details>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="reads" id="stati">
+  <div class="wrap">
+    <div class="rhead"><span class="kicker">Полезное</span><a href="/stati/" class="all">Все статьи →</a></div>
+    <div class="rlist">
+      <a href="/stati/manikyur-s-ukrepleniem-gelem/" class="ln-draw"><span>Маникюр с укреплением гелем: что это и кому подходит</span><i>→</i></a>
+      <a href="/stati/sterilizaciya-instrumentov-dlya-manikyura/" class="ln-draw"><span>Как стерилизуют инструменты: 3 этапа обработки</span><i>→</i></a>
+      <a href="/stati/naraschivanie-nogtey-formy-i-uhod/" class="ln-draw"><span>Наращивание ногтей: формы, цена и уход</span><i>→</i></a>
+      <a href="/stati/kak-podgotovitsya-k-manikyuru/" class="ln-draw"><span>Как подготовиться к маникюру и продлить носку</span><i>→</i></a>
     </div>
   </div>
 </section>

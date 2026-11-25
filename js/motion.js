@@ -176,6 +176,11 @@
       });
     });
 
+    /* ---------- READS ---------- */
+    var reads = gsap.utils.toArray('.rlist a');
+    draw(reads, '.rlist', { stagger: 0.08 });
+    gsap.fromTo(reads, { y: 22, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1, stagger: 0.07, scrollTrigger: { trigger: '.rlist', start: 'top 88%', once: true } });
+
     /* ---------- CONTACT ---------- */
     up('.contact .ways > *', '.contact .ways', { y: 50, stagger: 0.1 });
     var map = document.querySelector('.contact .map');
